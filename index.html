@@ -40,6 +40,71 @@
 <body>
     <img src="logo.png" alt="Hexagon Development Logo" class="logo" />
     <h1>Not found.</h1>
+    <!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hexagon Development</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Lexend', sans-serif;
+      background-color: black;
+      color: white;
+      margin: 0;
+      padding: 20px;
+    }
+    header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 30px;
+    }
+    header img {
+      height: 40px;
+      width: 40px;
+    }
+    .separator {
+      color: black; /* schwarz, aber auf schwarzem bg unsichtbar? */
+      /* Du meintest "schwarz", aber schwarzer Trennstrich auf schwarzem Hintergrund ist unsichtbar.
+         Ich nehme an, du willst den Strich in weiß? */
+      color: white; /* Hier weiß für Sichtbarkeit */
+      font-weight: bold;
+      font-size: 24px;
+      user-select: none;
+    }
+    header .games-button {
+      background-color: white;
+      color: black;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-family: 'Lexend', sans-serif;
+      font-weight: 600;
+      transition: background-color 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+    header .games-button:hover {
+      background-color: #ddd;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="logo.png" alt="Hexagon Development Logo" />
+    <span class="separator">|</span>
+    <a href="https://hexagondevteam.github.io/games" class="games-button">Games</a>
+  </header>
+
+  <h1>Hexagon Development</h1>
+  <p>Work in Progress. Come back soon...</p>
+  <p class="small-text">© 2025 Hexagon Development.</p>
+</body>
+</html>
+
     <p>Work in Progress. Come back soon...</p>
     <p class="small-text">© 2025 Hexagon Development.</p>
 </body>
