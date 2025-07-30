@@ -9,11 +9,19 @@
     <style>
         body {
             font-family: 'Lexend', sans-serif;
-            text-align: center;
+            background-color: #000;
+            color: #fff;
             margin: 0;
             padding: 50px;
-            background-color: #000; /* Schwarz */
-            color: #fff; /* Weiß */
+            position: relative;
+        }
+        /* Logo oben links fixieren */
+        .logo {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            width: 60px; /* kannst du anpassen */
+            height: auto;
         }
         h1 {
             font-size: 3rem;
@@ -30,9 +38,9 @@
     </style>
 </head>
 <body>
+    <img src="logo.png" alt="Hexagon Development Logo" class="logo" />
     <h1>Not found.</h1>
     <p>Work in Progress. Come back soon...</p>
     <p class="small-text">© 2025 Hexagon Development.</p>
 </body>
 </html>
-
