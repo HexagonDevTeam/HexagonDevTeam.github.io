@@ -1,2 +1,44 @@
 Founded on 6 March 2025
 © Hexagon Development 2025
+<header>
+  <img src="logo.png" alt="Hexagon Development Logo" />
+  <nav>
+    <a href="index.html" class="nav-button">Home</a>
+    <a href="https://hexagondevteam.github.io/games" class="nav-button">Games</a>
+    <a href="/about" class="nav-button">About</a>
+  </nav>
+</header>
+
+<style>
+  header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 10px 20px;
+    background-color: black;
+  }
+  header img {
+    height: 40px;
+    width: 40px;
+  }
+  nav {
+    display: flex;
+    flex-grow: 1;
+    justify-content: flex-start;
+    gap: 10px;
+  }
+  .nav-button {
+    background-color: white;
+    color: black;
+    padding: 8px 15px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-family: 'Lexend', sans-serif;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+  }
+  .nav-button:hover {
+    background-color: #ddd;
+  }
+</style>
+
