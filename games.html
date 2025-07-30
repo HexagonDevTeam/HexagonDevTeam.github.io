@@ -1,1 +1,117 @@
-nothing
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Simple Schach</title>
+<style>
+  body {
+    font-family: 'Lexend', sans-serif;
+    background-color: #000;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  #board {
+    display: grid;
+    grid-template-columns: repeat(8, 50px);
+    grid-template-rows: repeat(8, 50px);
+    gap: 0;
+    border: 2px solid #fff;
+  }
+  .square {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    cursor: pointer;
+    user-select: none;
+  }
+  .light {
+    background-color: #eee;
+    color: #000;
+  }
+  .dark {
+    background-color: #555;
+    color: #fff;
+  }
+  .selected {
+    outline: 3px solid yellow;
+  }
+</style>
+</head>
+<body>
+<div id="board"></div>
+
+<script>
+// Unicode-Schachfiguren
+const piecesUnicode = {
+  'r': '♜', 'n': '♞', 'b': '♝', 'q': '♛', 'k': '♚', 'p': '♟',
+  'R': '♖', 'N': '♘', 'B': '♗', 'Q': '♕', 'K': '♔', 'P': '♙'
+};
+
+// Startaufstellung (Standard)
+let boardState = [
+  ['r','n','b','q','k','b','n','r'],
+  ['p','p','p','p','p','p','p','p'],
+  ['','','','','','','',''],
+  ['','','','','','','',''],
+  ['','','','','','','',''],
+  ['','','','','','','',''],
+  ['P','P','P','P','P','P','P','P'],
+  ['R','N','B','Q','K','B','N','R']
+];
+
+const boardElement = document.getElementById('board');
+let selectedSquare = null;
+
+function createBoard() {
+  boardElement.innerHTML = '';
+  for(let row=0; row<8; row++) {
+    for(let col=0; col<8; col++) {
+      const square = document.createElement('div');
+      square.classList.add('square');
+      square.classList.add((row + col) % 2 === 0 ? 'light' : 'dark');
+      square.dataset.row = row;
+      square.dataset.col = col;
+      square.textContent = piecesUnicode[boardState[row][col]] || '';
+      square.addEventListener('click', onSquareClick);
+      boardElement.appendChild(square);
+    }
+  }
+}
+
+function onSquareClick(e) {
+  const row = parseInt(e.currentTarget.dataset.row);
+  const col = parseInt(e.currentTarget.dataset.col);
+  const piece = boardState[row][col];
+  
+  if(selectedSquare) {
+    // Move piece (ohne Regeln)
+    boardState[row][col] = boardState[selectedSquare.row][selectedSquare.col];
+    boardState[selectedSquare.row][selectedSquare.col] = '';
+    selectedSquare = null;
+    createBoard();
+  } else {
+    if(piece !== '') {
+      selectedSquare = {row, col};
+      highlightSelected(row, col);
+    }
+  }
+}
+
+function highlightSelected(row, col) {
+  document.querySelectorAll('.square').forEach(sq => sq.classList.remove('selected'));
+  const idx = row * 8 + col;
+  boardElement.children[idx].classList.add('selected');
+}
+
+createBoard();
+</script>
+</body>
+</html>
