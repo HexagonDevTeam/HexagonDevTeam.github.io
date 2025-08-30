@@ -16,18 +16,22 @@
     header {
       display: flex;
       align-items: center;
-      gap: 10px;
+      justify-content: space-between; 
       margin-bottom: 30px;
+    }
+    .left-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .right-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
     header img {
       height: 40px;
       width: 40px;
-    }
-    .separator {
-      color: white; 
-      font-weight: bold;
-      font-size: 24px;
-      user-select: none;
     }
     header .downloads-button {
       background-color: white;
@@ -41,7 +45,6 @@
       transition: background-color 0.3s ease;
       text-decoration: none;
       display: inline-block;
-      margin-left: 10px; 
     }
     header .downloads-button:hover {
       background-color: #ddd;
@@ -54,12 +57,16 @@
 </head>
 <body>
   <header>
-    <a href="https://hexagondevteam.github.io">
-      <img src="logo.png" alt="Hexagon Development Logo" />
-    </a>
-    <span class="separator">|</span>
-    <a href="https://hexagondevteam.github.io/downloads" class="downloads-button">Downloads</a>
-    <a href="https://hexagondevteam.github.io/about" class="downloads-button">About</a>
+    <div class="left-header">
+      <a href="https://hexagondevteam.github.io">
+        <img src="logo.png" alt="Hexagon Development Logo" />
+      </a>
+      <span class="separator">|</span>
+    </div>
+    <div class="right-header">
+      <a href="https://hexagondevteam.github.io/downloads" class="downloads-button">Downloads</a>
+      <a href="https://hexagondevteam.github.io/about" class="downloads-button">About</a>
+    </div>
   </header>
 
   <h1>Hexagon Development</h1>
