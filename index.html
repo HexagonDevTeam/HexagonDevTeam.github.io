@@ -19,11 +19,14 @@ header {
     align-items: center;
     gap: 10px;
     margin-bottom: 30px;
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 header img {
-    height: 40px;
-    width: 40px;
+    height: 60px;
+    width: 60px;
 }
 
 .separator {
@@ -34,7 +37,8 @@ header img {
 }
 
 header .downloads-button,
-header .about-button {
+header .about-button,
+header .arcane-button {
     background-color: white;
     color: black;
     border: none;
@@ -49,8 +53,22 @@ header .about-button {
 }
 
 header .downloads-button:hover,
-header .about-button:hover {
+header .about-button:hover,
+header .arcane-button:hover {
     background-color: #ddd;
+}
+
+header .about-button {
+    margin-left: auto;
+}
+
+h1 {
+    margin-top: 0;
+}
+
+p.small-text {
+    font-size: 12px;
+    color: #aaa;
 }
 </style>
 </head>
@@ -61,7 +79,8 @@ header .about-button:hover {
     </a>
     <span class="separator">|</span>
     <a href="https://hexagondevteam.github.io/downloads" class="downloads-button">Downloads</a>
-    <a href="/ArcaneOS.html" class="about-button">ArcaneOS</a>
+    <a href="/ArcaneOS.html" class="arcane-button">ArcaneOS</a>
+    <a href="/about.html" class="about-button">About</a>
 </header>
 
 <h1>Hexagon Development</h1>
