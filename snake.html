@@ -16,6 +16,7 @@ body {
     font-family: 'Lexend', sans-serif;
     color: #fff;
     user-select: none;
+    position: relative;
 }
 
 canvas {
@@ -37,20 +38,23 @@ canvas {
     pointer-events: none;
 }
 
-.game-over {
+.overlay {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
+    top: 0; left: 0; right: 0; bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: rgba(0,0,0,0.7);
     font-size: 32px;
-    text-align: center;
-    color: #ff5555;
     font-weight: 700;
-    text-shadow: 0 0 10px rgba(255,85,85,0.7);
+    text-align: center;
+    color: #fff;
+    gap: 16px;
+    z-index: 10;
 }
 
 button {
-    margin-top: 16px;
     padding: 10px 18px;
     font-size: 18px;
     border-radius: 14px;
@@ -68,7 +72,13 @@ button:hover {
 <body>
 <div class="score" id="score">Score: 0</div>
 <canvas id="gameCanvas" width="400" height="400"></canvas>
-<div class="game-over" id="gameOver" style="display:none;">
+
+<div class="overlay" id="startScreen">
+    Snake Game<br>
+    <button id="startBtn">Start</button>
+</div>
+
+<div class="overlay" id="gameOverScreen" style="display:none;">
     Game Over!<br>
     <button id="restartBtn">Restart</button>
 </div>
@@ -77,10 +87,11 @@ button:hover {
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 const grid = 20;
-const speed = 5; // frames per second
+const speed = 5;
 
 let snake, dx, dy, apple, score, gameOverFlag;
 let lastTime = 0;
+let gameRunning = false;
 
 function initGame() {
     snake = [{x: 8*grid, y: 8*grid}];
@@ -89,8 +100,9 @@ function initGame() {
     apple = spawnApple();
     score = 0;
     gameOverFlag = false;
+    gameRunning = true;
     document.getElementById('score').textContent = 'Score: 0';
-    document.getElementById('gameOver').style.display = 'none';
+    document.getElementById('gameOverScreen').style.display = 'none';
 }
 
 // Spawn apple avoiding snake
@@ -103,7 +115,7 @@ function spawnApple() {
 }
 
 function draw(time) {
-    if(gameOverFlag) return;
+    if(!gameRunning || gameOverFlag) return;
 
     if(time - lastTime > 1000 / speed){
         lastTime = time;
@@ -156,37 +168,41 @@ function render(){
 
 function endGame() {
     gameOverFlag = true;
-    document.getElementById('gameOver').style.display = 'block';
+    gameRunning = false;
+    document.getElementById('gameOverScreen').style.display = 'flex';
 }
 
 // Arrow keys + WASD controls
 document.addEventListener('keydown', e => {
+    if(!gameRunning) return;
+
     switch(e.key){
-        case 'ArrowUp':
-        case 'w': case 'W':
+        case 'ArrowUp': case 'w': case 'W':
             if(dy===0){dx=0; dy=-grid;}
             break;
-        case 'ArrowDown':
-        case 's': case 'S':
+        case 'ArrowDown': case 's': case 'S':
             if(dy===0){dx=0; dy=grid;}
             break;
-        case 'ArrowLeft':
-        case 'a': case 'A':
+        case 'ArrowLeft': case 'a': case 'A':
             if(dx===0){dx=-grid; dy=0;}
             break;
-        case 'ArrowRight':
-        case 'd': case 'D':
+        case 'ArrowRight': case 'd': case 'D':
             if(dx===0){dx=grid; dy=0;}
             break;
     }
 });
 
-document.getElementById('restartBtn').addEventListener('click', ()=>{
+document.getElementById('startBtn').addEventListener('click', ()=>{
     initGame();
+    document.getElementById('startScreen').style.display = 'none';
+    requestAnimationFrame(draw);
 });
 
-initGame();
-requestAnimationFrame(draw);
+document.getElementById('restartBtn').addEventListener('click', ()=>{
+    initGame();
+    document.getElementById('gameOverScreen').style.display = 'none';
+    requestAnimationFrame(draw);
+});
 </script>
 </body>
 </html>
