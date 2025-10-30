@@ -1,5 +1,9 @@
 // Snake Game in pure JS
 // Call startSnake() to start
+const script = document.createElement('script');
+script.src = '/snake.js';
+document.body.appendChild(script);
+
 
 function startSnake() {
     // Overlay
