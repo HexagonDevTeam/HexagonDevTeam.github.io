@@ -289,23 +289,13 @@ if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){cursor.style.d
 
 
 <script>
-// Konami Code: ↑↑↓↓←→←→ B A Enter
-const konamiCode = [38,38,40,40,37,39,37,39,66,65,13];
-let konamiIndex = 0;
+let inputBuffer = "";
 
-document.addEventListener('keydown', e => {
-    if (e.keyCode === konamiCode[konamiIndex]) {
-        konamiIndex++;
-        if (konamiIndex === konamiCode.length) {
-            konamiIndex = 0;
-            // Snake.js dynamisch laden
-            const script = document.createElement('script');
-            script.src = '/snake.js';
-            document.body.appendChild(script);
-        }
-    } else {
-        konamiIndex = 0;
+document.addEventListener("keydown", (e) => {
+    inputBuffer += e.key.toLowerCase();
+    if (inputBuffer.endsWith("snake")) {
+        window.location.href = "/snake"; // Weiterleitung
+        inputBuffer = ""; // Buffer zurücksetzen
     }
 });
 </script>
-
