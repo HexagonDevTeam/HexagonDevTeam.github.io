@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Debug Page</title>
+<style>
+  body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #111;
+    color: #eee;
+    padding: 40px;
+  }
+  h1 { color: #4da3ff; }
+  pre {
+    background-color: #222;
+    padding: 20px;
+    border-radius: 8px;
+    overflow-x: auto;
+  }
+</style>
+</head>
+<body>
+  <h1>Debug Info</h1>
+
+  <h2>User Agent</h2>
+  <pre id="user-agent"></pre>
+
+  <h2>Browser Info</h2>
+  <pre id="browser-info"></pre>
+
+  <h2>Screen Info</h2>
+  <pre id="screen-info"></pre>
+
+  <h2>Navigator Info</h2>
+  <pre id="navigator-info"></pre>
+
+  <script>
+    // User Agent
+    document.getElementById('user-agent').textContent = navigator.userAgent;
+
+    // Browser Info
+    const browserInfo = {
+      appName: navigator.appName,
+      appVersion: navigator.appVersion,
+      platform: navigator.platform,
+      language: navigator.language
+    };
+    document.getElementById('browser-info').textContent = JSON.stringify(browserInfo, null, 2);
+
+    // Screen Info
+    const screenInfo = {
+      width: screen.width,
+      height: screen.height,
+      availWidth: screen.availWidth,
+      availHeight: screen.availHeight,
+      colorDepth: screen.colorDepth,
+      pixelDepth: screen.pixelDepth
+    };
+    document.getElementById('screen-info').textContent = JSON.stringify(screenInfo, null, 2);
+
+    // Navigator Info
+    const navInfo = {
+      cookieEnabled: navigator.cookieEnabled,
+      onLine: navigator.onLine,
+      hardwareConcurrency: navigator.hardwareConcurrency,
+      maxTouchPoints: navigator.maxTouchPoints,
+      vendor: navigator.vendor
+    };
+    document.getElementById('navigator-info').textContent = JSON.stringify(navInfo, null, 2);
+  </script>
+</body>
+</html>
