@@ -7,9 +7,6 @@
 <title>Hexagon Development</title>
 <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;600;700&display=swap" rel="stylesheet" />
 <style>
-  /* =========================
-     Variables & base
-     ========================= */
   :root{
     --bg1: #05080d;
     --bg2: #0a1624;
@@ -32,7 +29,6 @@
     -moz-osx-font-smoothing:grayscale;
   }
 
-  /* ========= Global layout ========== */
   .wrap{
     max-width:1100px;
     margin: 110px auto 60px;
@@ -77,7 +73,6 @@
     margin-right:6px;
   }
 
-  /* Navigation buttons */
   .nav-actions{ display:flex; gap:10px; margin-left:auto; align-items:center; }
 
   .btn {
@@ -100,7 +95,6 @@
   .btn:active{ transform: translateY(-1px) scale(.998); }
   .btn:focus{ outline: 3px solid rgba(77,163,255,0.3); outline-offset:3px; }
 
-  /* ============= Hero ============= */
   .hero{
     margin-top:28px;
   }
@@ -141,73 +135,50 @@
     display:inline-block;
   }
 
-  /* =========== Marquee (oben) - blauer Glow ========== */
+  /* --- STATIC MARQUEE (centered badge) --- */
   .top-marquee{
     position: fixed;
     top: 8px;
-    left: 0;
-    width: 100%;
+    left: 50%;
+    transform: translateX(-50%);
     z-index: 9999;
-    pointer-events:none;
-    display:flex;
-    justify-content:center;
-    padding:6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .marquee-inner{
-    pointer-events:auto;
-    display:inline-block;
-    padding:10px 18px;
-    border-radius:999px;
+    padding: 10px 22px;
+    border-radius: 999px;
     background: linear-gradient(90deg, rgba(0,20,40,0.7), rgba(0,40,80,0.6));
     box-shadow: 0 8px 30px rgba(0,0,0,0.6);
-    color:var(--accent);
-    font-weight:800;
-    text-transform:uppercase;
-    letter-spacing:1px;
+    color: var(--accent);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
     text-shadow: 0 0 8px rgba(77,163,255,0.4);
-    user-select:none;
+    user-select: none;
+    font-size: 1.6rem;
+    white-space: nowrap;
   }
 
-  .marquee{
-    display:inline-block;
-    white-space:nowrap;
-    animation: marquee-scroll 8s linear infinite;
-    font-size:1.6rem;
-  }
-
-  @keyframes marquee-scroll{
-    0%{ transform: translateX(100%); }
-    100%{ transform: translateX(-100%); }
-  }
-
-  /* small text / footer */
   .muted{
     color:var(--muted);
     font-size:0.9rem;
   }
 
-  footer{
-    margin-top:28px;
-    color:var(--muted);
-    font-size:0.9rem;
-    text-align:center;
-  }
-
   @media (max-width:520px){
     h1{ font-size:28px; }
-    .marquee-inner{ font-size:1rem; padding:8px 12px; border-radius:10px; }
+    .marquee-inner{ font-size:1rem; padding:8px 14px; }
     .btn{ padding:8px 12px; font-size:0.95rem; border-radius:10px; }
   }
 </style>
 </head>
 <body>
 
-  <!-- TOP MARQUEE -->
-  <div class="top-marquee" aria-hidden="false">
-    <div class="marquee-inner">
-      <span class="marquee">Happy Halloween! 🎃</span>
-    </div>
+  <!-- STATIC CENTERED MARQUEE -->
+  <div class="top-marquee">
+    <div class="marquee-inner">Happy Halloween! 🎃</div> <!-- Hexagon Development — Open Source. Unlimited Freedom. -->
   </div>
 
   <div class="wrap">
